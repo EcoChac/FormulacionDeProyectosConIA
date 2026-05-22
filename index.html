@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía del Participante: MEL en Organizaciones Educativas con IA</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --azul: #114495;
+            --naranja: #ee9d08;
+            --rojo: #e6331b;
+            --amarillo: #ffed00;
+            --blanco: #ffffff;
+            --negro: #000000;
+            --gris-claro: #f5f5f5;
+            --gris-medio: #e0e0e0;
+            --violeta: #5c35a0;
+            --violeta-claro: #ede7f6;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--negro);
+            line-height: 1.7;
+            background-color: var(--blanco);
+            padding-bottom: 60px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* ── HEADER ── */
+        header {
+            background-color: var(--azul);
+            color: var(--blanco);
+            padding: 30px 0 20px;
+            margin-bottom: 30px;
+        }
+        .header-content { text-align: center; }
+        .header-content .badge {
+            display: inline-block;
+            background-color: var(--naranja);
+            color: var(--blanco);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            padding: 4px 14px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+        .header-content h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            line-height: 1.25;
+        }
+        .header-content h2 {
+            font-size: 1.05rem;
+            font-weight: 400;
+            opacity: .85;
+        }
+
+        /* ── NAV / TOC ── */
+        .toc {
+            background-color: var(--gris-claro);
+            border-radius: 10px;
+            padding: 20px 25px;
+            margin-bottom: 30px;
+            border-left: 5px solid var(--azul);
+        }
+        .toc h3 {
+            color: var(--azul);
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: .5px;
+            text-transform: uppercase;
+        }
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 6px 20px;
+        }
+        .toc-grid a {
+            color: var(--azul);
+            text-decoration: none;
+            font-size: 0.87rem;
+            padding: 3px 0;
+            border-bottom: 1px dotted var(--gris-medio);
+            transition: color .2s;
+        }
+        .toc-grid a:hover { color: var(--naranja); }
+        .toc-grid a span {
+            font-weight: 600;
+            margin-right: 4px;
+        }
+
+        /* ── INTRO BOX ── */
+        .intro {
+            background-color: var(--gris-claro);
+            padding: 22px 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border-left: 5px solid var(--naranja);
+        }
+
+        /* ── NOTE (IA intro) ── */
+        .note-box {
+            background-color: var(--violeta-claro);
+            padding: 18px 22px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border-left: 5px solid var(--violeta);
+        }
+        .note-box strong { color: var(--violeta); }
+
+        /* ── SECTION ── */
+        .section {
+            margin-bottom: 45px;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .section-title {
+            color: var(--azul);
+            font-size: 1.35rem;
+            font-weight: 700;
+            padding-bottom: 10px;
+            margin-bottom: 22px;
+            border-bottom: 3px solid var(--amarillo);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .section-title .icon {
+            background-color: var(--azul);
+            color: var(--blanco);
+            width: 38px; height: 38px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        /* ── SUBSECTION ── */
+        .subsection { margin-bottom: 24px; }
+        .subsection-title {
+            color: var(--azul);
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .subsection-title svg { color: var(--rojo); flex-shrink: 0; }
+
+        p { margin-bottom: 14px; text-align: justify; }
+        ul, ol { margin-left: 28px; margin-bottom: 14px; }
+        li { margin-bottom: 5px; }
+
+        /* ── COLORED BOXES ── */
+        .highlight-box {
+            background-color: #ffedcc;
+            padding: 15px 18px;
+            border-radius: 8px;
+            margin: 18px 0;
+            font-weight: 500;
+            border-left: 5px solid var(--naranja);
+        }
+        .reflection-box {
+            background-color: var(--gris-medio);
+            padding: 15px 18px;
+            border-radius: 8px;
+            margin: 18px 0;
+            border-left: 5px solid var(--azul);
+        }
+        .exercise-box {
+            background-color: var(--gris-claro);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 5px solid var(--naranja);
+        }
+        .exercise-box strong { color: #b36800; }
+        .critical-box {
+            background-color: #ffcccb;
+            padding: 15px 18px;
+            border-radius: 8px;
+            margin: 18px 0;
+            border-left: 5px solid var(--rojo);
+            font-weight: 500;
+        }
+        .example-box {
+            background-color: #e8f5e9;
+            padding: 15px 18px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 5px solid #43a047;
+        }
+
+        /* ── AI BOX ── */
+        .ai-box {
+            background-color: var(--violeta-claro);
+            padding: 18px 20px;
+            border-radius: 10px;
+            margin: 22px 0;
+            border-left: 5px solid var(--violeta);
+        }
+        .ai-box .ai-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .ai-box .ai-header .ai-icon {
+            background-color: var(--violeta);
+            color: var(--blanco);
+            width: 32px; height: 32px;
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        .ai-box .ai-header strong {
+            color: #4527a0;
+            font-size: 1rem;
+        }
+        .ai-box .tool-tag {
+            display: inline-block;
+            background-color: var(--violeta);
+            color: var(--blanco);
+            font-size: 0.72rem;
+            font-weight: 600;
+            padding: 2px 9px;
+            border-radius: 12px;
+            margin: 3px 3px 3px 0;
+        }
+        .ai-box em { color: #4527a0; font-style: italic; }
+
+        /* ── PIPELINE STEPS ── */
+        .pipeline {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            margin: 15px 0;
+        }
+        .pipeline-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+        .pipeline-connector {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-shrink: 0;
+        }
+        .step-circle {
+            background-color: var(--violeta);
+            color: var(--blanco);
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+        .step-line {
+            width: 2px;
+            flex-grow: 1;
+            min-height: 20px;
+            background-color: #c5b3e8;
+            margin: 4px 0;
+        }
+        .step-content {
+            padding: 4px 0 18px 0;
+            flex: 1;
+        }
+        .step-content strong { color: #4527a0; display: block; margin-bottom: 4px; }
+
+        /* ── PYRAMID ── */
+        .pyramid {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 24px 0;
+        }
+        .pyramid-level {
+            width: 100%; text-align: center;
+            padding: 14px 20px; margin: 4px 0;
+            border-radius: 8px; font-weight: 600;
+            color: var(--blanco);
+        }
+        .nivel-1 { background-color: #1a237e; max-width: 96%; }
+        .nivel-2 { background-color: #283593; max-width: 84%; }
+        .nivel-3 { background-color: #3949ab; max-width: 73%; }
+        .nivel-4 { background-color: #5e35b1; max-width: 62%; }
+        .nivel-5 { background-color: #7e57c2; max-width: 52%; }
+
+        .arrow { text-align: center; font-size: 1.8rem; color: var(--naranja); margin: 2px 0; }
+
+        /* ── TABLES ── */
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 18px 0;
+            font-size: 0.93rem;
+        }
+        .table th {
+            background-color: var(--azul);
+            color: var(--blanco);
+            text-align: left;
+            padding: 11px 14px;
+            font-weight: 600;
+        }
+        .table td {
+            border: 1px solid var(--gris-medio);
+            padding: 11px 14px;
+            vertical-align: top;
+        }
+        .table tr:nth-child(even) { background-color: var(--gris-claro); }
+
+        .checklist-table .table td input[type="checkbox"] {
+            width: 18px; height: 18px; cursor: pointer;
+        }
+
+        /* ── INPUTS ── */
+        .input-area {
+            width: 100%;
+            min-height: 80px;
+            padding: 10px 12px;
+            border: 2px solid var(--gris-medio);
+            border-radius: 6px;
+            margin: 10px 0;
+            font-family: inherit;
+            font-size: 0.92rem;
+            resize: vertical;
+        }
+        .input-area:focus {
+            outline: none;
+            border-color: var(--azul);
+        }
+        .input-short { min-height: 45px; }
+
+        /* ── QUOTE ── */
+        blockquote {
+            border-left: 4px solid var(--naranja);
+            padding: 10px 18px;
+            margin: 15px 0;
+            font-style: italic;
+            color: #444;
+            background-color: #fffbf2;
+            border-radius: 0 6px 6px 0;
+        }
+
+        /* ── LOGFRAME HIGHLIGHT ── */
+        .logframe-box {
+            background-color: #e3f2fd;
+            padding: 15px 18px;
+            border-radius: 8px;
+            margin: 18px 0;
+        }
+
+        /* ── RESOURCES ── */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+            margin-top: 16px;
+        }
+        .resource-card {
+            background-color: var(--gris-claro);
+            border-radius: 8px;
+            padding: 16px;
+            border-top: 3px solid var(--azul);
+        }
+        .resource-card h4 {
+            color: var(--azul);
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+        }
+        .resource-card li { font-size: 0.88rem; margin-bottom: 6px; }
+
+        /* ── FOOTER ── */
+        .footer-note {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 40px;
+            padding: 20px;
+            border-top: 2px solid var(--gris-medio);
+            font-style: italic;
+        }
+
+        /* ── PRINT ── */
+        @media print {
+            .no-print { display: none !important; }
+            .section { box-shadow: none; border: 1px solid var(--gris-medio); page-break-inside: avoid; }
+            header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .pyramid-level { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .ai-box, .highlight-box, .critical-box, .example-box, .reflection-box, .exercise-box {
+                -webkit-print-color-adjust: exact; print-color-adjust: exact;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .header-content h1 { font-size: 1.4rem; }
+            .toc-grid { grid-template-columns: 1fr; }
+            .resources-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════ HEADER -->
+<header>
+    <div class="container">
+        <div class="header-content">
+            <div class="badge">Material de participante</div>
+            <h1>Guía del Participante: Monitoreo, Evaluación y Aprendizaje (MEL)</h1>
+            <h2>Para organizaciones educativas en América Latina y el Caribe &nbsp;·&nbsp; Con integración de inteligencia artificial</h2>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+
+<!-- ══ TOC -->
+<nav class="toc no-print">
+    <h3>📋 Contenido de la guía</h3>
+    <div class="toc-grid">
+        <a href="#bienvenida"><span>→</span> Bienvenida</a>
+        <a href="#m1"><span>M1</span> Fundamentos del MEL</a>
+        <a href="#m2"><span>M2</span> Análisis contextual</a>
+        <a href="#m3"><span>M3</span> Modelo pedagógico</a>
+        <a href="#m4"><span>M4</span> Teoría de cambio</a>
+        <a href="#m5"><span>M5</span> Niveles de planificación</a>
+        <a href="#m6"><span>M6</span> Proyecto y marco lógico</a>
+        <a href="#m7"><span>M7</span> Formulación de indicadores</a>
+        <a href="#m8"><span>M8</span> Verificación de coherencia</a>
+        <a href="#m9"><span>M9</span> Herramientas de monitoreo</a>
+        <a href="#m10"><span>M10</span> Dashboards de datos</a>
+        <a href="#m11"><span>M11</span> Marco legal y PEI</a>
+        <a href="#m12"><span>M12</span> Plan de implementación</a>
+        <a href="#m13"><span>M13</span> Reflexión crítica final</a>
+        <a href="#recursos"><span>→</span> Recursos</a>
+    </div>
+</nav>
+
+<!-- ══ BIENVENIDA -->
+<div id="bienvenida" class="intro">
+    <h3 style="margin-bottom:10px; font-weight:700; color:var(--azul);">Bienvenida</h3>
+    <p>Esta guía está diseñada para equipos de organizaciones educativas en América Latina y el Caribe que buscan construir o fortalecer sus sistemas de Monitoreo, Evaluación y Aprendizaje (MEL). Su propósito es facilitar el proceso de hacer visible lo que realmente importa en el trabajo educativo, desde una perspectiva crítica, contextualizada y participativa; y sistematizar la generación y recolección de datos para decisiones estratégicas.</p>
+    <p>La guía avanza <strong>de lo general a lo específico</strong>: desde las preguntas más fundamentales sobre qué y para qué educamos, hasta los instrumentos concretos para medir y aprender. Cada módulo incluye ejemplos, ejercicios y sugerencias para integrar herramientas de inteligencia artificial (IA) que pueden potenciar —sin reemplazar— los procesos humanos de análisis, diálogo y toma de decisiones.</p>
+    <p style="margin-bottom:0;"><strong>¿Para quién es esta guía?</strong> Docentes, directores/as, coordinadores/as pedagógicos, gestores de proyectos y equipos de seguimiento de organizaciones educativas que trabajan con comunidades, especialmente en contextos de diversidad cultural y social.</p>
+</div>
+
+<div class="note-box">
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+        <span style="font-size:1.4rem;">🤖</span>
+        <strong>Una nota sobre la IA en esta guía</strong>
+    </div>
+    <p style="margin-bottom:8px;">A lo largo de los módulos encontrarás sugerencias de cómo usar herramientas de IA en cada etapa del proceso de MEL.</p>
+    <p style="margin-bottom:0;">La IA puede ayudarnos a investigar más rápido, organizar información compleja, generar borradores y visualizar ideas, pero <strong>no puede ni debe reemplazar el diálogo comunitario, el juicio pedagógico crítico ni la participación genuina de las personas que la educación debe servir.</strong></p>
+</div>
+
+<!-- ══════════════════════════════════════════════ MÓDULO 1 -->
+<div id="m1" class="section">
+    <h2 class="section-title"><span class="icon">1</span> Fundamentos: Por qué no se puede monitorear sin definir</h2>
+
+    <div class="subsection">
+        <h3 class="subsection-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            1.1 El problema de evaluar sin claridad conceptual
+        </h3>
+        <p>Es imposible monitorear y evaluar algo que no se ha definido tanto teórica como metodológicamente. Si no tenemos claro qué entendemos por "calidad educativa", "aprendizaje significativo" o "desarrollo integral", ¿cómo podemos medirlos?</p>
+        <div class="highlight-box">
+            <strong>Ejemplo:</strong> Muchas organizaciones evalúan el "éxito académico" a través de calificaciones numéricas, sin haber definido qué significa el éxito para su comunidad. ¿Es memorizar contenidos? ¿Desarrollar pensamiento crítico? ¿Formar ciudadanos comprometidos con su entorno? La respuesta determina completamente qué se mide y cómo.
+        </div>
+        <p>Nuestras definiciones deben cumplir con marcos legales vigentes y, más importante, ser coherentes con las necesidades y aspiraciones de la comunidad a la que servimos. Estas dos exigencias no siempre coinciden, y navegar esa tensión es parte del trabajo crítico en MEL.</p>
+    </div>
+
+    <div class="subsection">
+        <h3 class="subsection-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            1.2 Marcos de referencia disponibles
+        </h3>
+        <p>No es necesario inventar desde cero. Existen herramientas y marcos que podemos adaptar críticamente:</p>
+        <table class="table">
+            <tr><th>Herramienta</th><th>Descripción</th><th>Limitación crítica</th></tr>
+            <tr><td><strong>Teach Primary</strong> (Banco Mundial)</td><td>Observación de prácticas docentes en aula</td><td>Diseñada desde contextos del norte global</td></tr>
+            <tr><td><strong>Stallings Classroom Observation</strong></td><td>Uso del tiempo en el aula</td><td>No capta dimensiones culturales ni críticas</td></tr>
+            <tr><td><strong>Indicadores ODS 4</strong></td><td>Marco global de educación de calidad</td><td>Perspectiva cuantitativa y estandarizada</td></tr>
+            <tr><td><strong>EGRA / EGMA</strong></td><td>Evaluación de lectura y matemáticas en primaria</td><td>Mide adaptación al sistema, no transformación</td></tr>
+        </table>
+        <div class="critical-box">
+            <strong>Perspectiva crítica:</strong> Estas herramientas son útiles como punto de partida, pero deben analizarse desde perspectivas latinoamericanas. Autores como Paulo Freire, Catherine Walsh, Boaventura de Sousa Santos y pedagogos indígenas ofrecen marcos que van más allá de las teorías pedagógicas occidentales hegemónicas.
+        </div>
+    </div>
+
+    <div class="ai-box">
+        <div class="ai-header">
+            <div class="ai-icon">🤖</div>
+            <strong>IA para investigación teórica</strong>
+        </div>
+        <p><strong>Situación:</strong> Quieres fundamentar conceptos como "aprendizaje significativo" o "educación intercultural" con referencias académicas antes de construir tu marco de MEL.</p>
+        <p>
+            <span class="tool-tag">Consensus</span>
+            <span class="tool-tag">Perplexity</span>
+            <span class="tool-tag">Claude</span>
+            <span class="tool-tag">ChatGPT</span>
+        </p>
+        <ul>
+            <li><strong>Consensus</strong> (consensus.app): buscador académico con IA que extrae conclusiones de artículos científicos revisados por pares. Útil para preguntas como <em>"¿Qué evidencia existe sobre evaluación formativa en contextos interculturales?"</em></li>
+            <li><strong>Perplexity</strong> (perplexity.ai): motor de búsqueda con IA que cita fuentes en tiempo real. Bueno para explorar un tema antes de profundizar.</li>
+            <li><strong>Claude / ChatGPT:</strong> para pedir resúmenes de corrientes teóricas o comparar enfoques. Ej: <em>"Compara el modelo pedagógico de Freire con el constructivismo social de Vygotsky en tres puntos clave."</em></li>
+        </ul>
+        <p style="margin-bottom:0; font-size:0.9rem; background:#ddd5f3; padding:8px 12px; border-radius:6px;"><strong>Importante:</strong> Verifica siempre las citas de la IA. Puedes buscar los textos originales por título entre comillas o número DOI en cualquier buscador. Consensus y Perplexity son más confiables que ChatGPT o Claude para referencias bibliográficas específicas.</p>
+    </div>
+
+    <div class="exercise-box">
+        <strong>EJERCICIO 1: Reflexión inicial</strong>
+        <p>En equipos, respondan:</p>
+        <p><strong>1. ¿Qué cambios profundos sueñan para su institución educativa?</strong></p>
+        <textarea class="input-area no-print" placeholder="Escriban aquí sus respuestas colectivas..."></textarea>
+        <p><strong>2. ¿Qué barreras han encontrado para implementar pedagogías más participativas?</strong></p>
+        <textarea class="input-area no-print" placeholder="Identifiquen al menos 3 barreras..."></textarea>
+        <p><strong>3. ¿Las regulaciones del Estado han garantizado una educación coherente con las necesidades reales de su comunidad?</strong></p>
+        <textarea class="input-area no-print" placeholder="Reflexionen con honestidad y ejemplos concretos..."></textarea>
+        <p><strong>4. Elijan 3 conceptos clave para su trabajo (ej. "aprendizaje significativo", "ciudadanía crítica", "pertinencia cultural"). ¿Cómo los definen actualmente en su organización?</strong></p>
+        <textarea class="input-area no-print" placeholder="Concepto 1: &#10;Concepto 2: &#10;Concepto 3: "></textarea>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ MÓDULO 2 -->
+<div id="m2" class="section">
+    <h2 class="section-title"><span class="icon">2</span> Análisis Contextual: Conociendo nuestra realidad</h2>
+
+    <p>Antes de diseñar cualquier sistema de MEL necesitamos comprender profundamente el contexto en el que opera nuestra organización. Este análisis va mucho más allá de los datos estadísticos oficiales: incluye voces, historias, saberes y tensiones que los números no capturan.</p>
+
+    <div class="subsection">
+        <h3 class="subsection-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+            2.1 Fuentes de datos oficiales
+        </h3>
+        <table class="table">
+            <tr><th>Tipo de dato</th><th>Fuentes recomendadas</th><th>¿Para qué sirve?</th></tr>
+            <tr><td>Demografía local</td><td>INE, censos municipales</td><td>Conocer la población que atendemos</td></tr>
+            <tr><td>Índices de pobreza</td><td>SEGEPLAN, PNUD, CEPAL</td><td>Entender barreras socioeconómicas</td></tr>
+            <tr><td>Cobertura educativa</td><td>MINEDUC, anuarios estadísticos</td><td>Identificar brechas de acceso</td></tr>
+            <tr><td>Deserción escolar</td><td>MINEDUC, registros locales</td><td>Comprender factores de exclusión</td></tr>
+            <tr><td>Contexto lingüístico</td><td>ALMG, estudios locales</td><td>Diseñar educación pertinente</td></tr>
+        </table>
+        <div class="example-box">
+            <strong>Ejemplo aplicado:</strong> En Santa Cruz la Laguna, Sololá, el 89.3% de la población vive en condiciones de pobreza, el 93.57% habla Kaqchikel como primer idioma, y solo el 60.41% tiene cobertura en educación primaria. Estos datos son inseparables: cualquier propuesta educativa que ignore la lengua y la situación económica muy probablemente reproducirá dinámicas de exclusión.
+        </div>
+    </div>
+
+    <div class="subsection">
+        <h3 class="subsection-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            2.2 Datos propios: diagnóstico interno
+        </h3>
+        <p>Los datos oficiales dan el marco general, pero necesitamos información propia sobre nuestra población:</p>
+        <ul>
+            <li>Nivel educativo de las familias y lenguas habladas en el hogar</li>
+            <li>Acceso a recursos educativos (libros, internet, espacios de estudio)</li>
+            <li>Aspiraciones y expectativas educativas de estudiantes y familias</li>
+            <li>Saberes y conocimientos comunitarios (no solo académicos)</li>
+            <li>Prácticas culturales vigentes y en riesgo de desaparición</li>
+        </ul>
+    </div>
+
+    <div class="subsection">
+        <h3 class="subsection-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            2.3 Metodologías participativas con niñez y comunidad
+        </h3>
+        <ul>
+            <li><strong>Dibujos colectivos:</strong> "Dibuja tu escuela soñada vs. tu escuela real"</li>
+            <li><strong>Teatro del oprimido infantil:</strong> Representar situaciones de injusticia escolar</li>
+            <li><strong>Asambleas de aula:</strong> Espacios democráticos de análisis colectivo</li>
+            <li><strong>Fotovoz:</strong> Fotografías que documentan problemas y soluciones desde la perspectiva de los niños</li>
+        </ul>
+        <div class="reflection-box">
+            <strong>Reflexión:</strong> La niñez identifica problemas estructurales que los adultos solemos ignorar. No subestimemos su capacidad de análisis crítico.
+        </div>
+    </div>
+
+    <div class="ai-box">
+        <div class="ai-header">
+            <div class="ai-icon">🤖</div>
+            <strong>IA para análisis contextual</strong>
+        </div>
+        <p><span class="tool-tag">Claude</span><span class="tool-tag">ChatGPT</span><span class="tool-tag">Fireflies</span><span class="tool-tag">NotebookLM</span></p>
+        <p><strong>Uso 1 — Análisis de datos estadísticos:</strong> Si tienes tablas del INE o MINEDUC en PDF o Excel, cárgalos en Claude o ChatGPT y pide que identifique patrones o redacte un párrafo de contextualización. Por ejemplo: <em>"Basándote en los datos que te comparto, identifica las 3 brechas de cobertura educativa más críticas."</em> Convierte el PDF a texto antes de subirlo y elimina información personal o sensible.</p>
+        <p><strong>Uso 2 — Captura de voces comunitarias:</strong> Si realizas grupos focales o entrevistas, <strong>Fireflies.ai</strong> puede transcribir automáticamente las sesiones. Informa siempre a los participantes y solicita su autorización explícita antes de grabar. (Ver flujo completo en Módulo 9.)</p>
+        <p style="margin-bottom:0;"><strong>Uso 3 — Síntesis de múltiples fuentes:</strong> <strong>NotebookLM</strong> de Google permite cargar varios documentos (censos, estudios previos, informes de evaluación) y hacer preguntas sobre el conjunto. Ideal cuando tienes mucha literatura dispersa que necesitas cruzar.</p>
+    </div>
+
+    <div class="exercise-box">
+        <strong>EJERCICIO 2: Análisis contextual</strong>
+        <p>En equipos, respondan:</p>
+        <p><strong>1. ¿Qué datos oficiales tienen sobre su municipio o comunidad? ¿Qué revelan y qué ocultan?</strong></p>
+        <textarea class="input-area no-print" placeholder="Fuentes consultadas, datos clave, vacíos identificados..."></textarea>
+        <p><strong>2. ¿Qué información han recolectado internamente sobre sus estudiantes y sus familias?</strong></p>
+        <textarea class="input-area no-print" placeholder="Qué saben, cómo lo obtuvieron, qué les falta saber..."></textarea>
+        <p><strong>3. ¿Qué datos adicionales necesitarían para comprender mejor su contexto?</strong></p>
+        <textarea class="input-area no-print" placeholder="Liste los datos que aún no tienen y cómo podrían obtenerlos..."></textarea>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ MÓDULO 3 -->
+<div id="m3" class="section">
+    <h2 class="section-title"><span class="icon">3</span> Modelo Pedagógico: Qué y para qué educamos</h2>
+
+    <div class="subsection">
+        <h3 class="subsection-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            3.1 ¿Qué es un modelo pedagógico?
+        </h3>
+        <p>Un modelo pedagógico es el conjunto coherente de principios, teorías y prácticas que guían el proceso educativo. Debe responder a preguntas fundamentales:</p>
+        <ul>
+            <li>¿Para qué educamos? (finalidades)</li>
+            <li>¿Qué tipo de ser humano queremos formar? (antropología pedagógica)</li>
+            <li>¿Cómo entendemos el aprendizaje? (teorías del aprendizaje)</li>
+            <li>¿Qué rol tienen docentes y estudiantes? (relaciones pedagógicas)</li>
+            <li>¿Cómo evaluamos? (concepciones de evaluación)</li>
+        </ul>
+        <div class="critical-box">
+            <strong>Reflexión crítica:</strong> Los modelos pedagógicos no son neutrales. Un modelo "bancario" (Freire) ve al estudiante como receptor pasivo; un modelo crítico-liberador lo ve como sujeto transformador de su realidad. ¿Cuál reflejan las prácticas reales de tu organización?
+        </div>
+    </div>
+
+    <div class="subsection">
+        <h3 class="subsection-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
+            3.2 Definición teórica de conceptos clave
+        </h3>
+        <p>Es fundamental definir operacionalmente los conceptos que guiarán nuestro trabajo:</p>
+        <table class="table">
+            <tr><th>Concepto</th><th>Definición teórica</th><th>Indicadores observables</th></tr>
+            <tr>
+                <td><strong>Aprendizaje Significativo</strong></td>
+                <td>Proceso donde el estudiante relaciona nueva información con sus conocimientos previos (Ausubel)</td>
+                <td>Conecta contenidos con su contexto; aplica conocimientos en situaciones reales; explica con sus propias palabras</td>
+            </tr>
+            <tr>
+                <td><strong>Pensamiento Crítico</strong></td>
+                <td>Capacidad de analizar, cuestionar y transformar la realidad (Freire, Giroux)</td>
+                <td>Formula preguntas profundas; identifica relaciones de poder; propone alternativas colectivas</td>
+            </tr>
+            <tr>
+                <td><strong>Interculturalidad</strong></td>
+                <td>Diálogo equitativo entre culturas que cuestiona relaciones de dominación (Walsh)</td>
+                <td>Valora saberes locales; usa lenguas maternas; cuestiona jerarquías culturales en el aula</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="subsection">
+        <h3 class="subsection-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            3.3 De lo tradicional a lo transformador
+        </h3>
+        <table class="table">
+            <tr><th>Enfoque tradicional</th><th>Propuesta pedagógica crítica</th></tr>
+            <tr><td>Objetivo: mejorar el rendimiento académico</td><td>Objetivo: desarrollar conciencia crítica y capacidad de transformación social</td></tr>
+            <tr><td>Problema: bajo rendimiento</td><td>Problema: sistema que reproduce desigualdades y silencia saberes locales</td></tr>
+            <tr><td>Solución: más contenidos y tareas</td><td>Solución: pedagogías participativas que conecten escuela y comunidad</td></tr>
+            <tr><td>Beneficiarios: estudiantes con bajo rendimiento</td><td>Participantes: toda la comunidad educativa como sujetos de transformación</td></tr>
+        </table>
+        <blockquote>"La educación no cambia el mundo, cambia a las personas que van a cambiar el mundo." — Paulo Freire</blockquote>
+    </div>
+
+    <div class="ai-box">
+        <div class="ai-header">
+            <div class="ai-icon">🤖</div>
+            <strong>NotebookLM para síntesis teórica del modelo pedagógico</strong>
+        </div>
+        <p><span class="tool-tag">NotebookLM</span><span class="tool-tag">Consensus</span><span class="tool-tag">Perplexity</span><span class="tool-tag">Claude</span></p>
+        <p><strong>¿Qué es NotebookLM?</strong> Es una herramienta de Google que funciona como un "asistente lector" de tus propios documentos. Le cargas artículos, libros o informes y puedes hacerle preguntas sobre ese corpus específico.</p>
+        <div class="pipeline">
+            <div class="pipeline-step">
+                <div class="pipeline-connector"><div class="step-circle">1</div><div class="step-line"></div></div>
+                <div class="step-content"><strong>Recolecta fuentes</strong> Busca 5-10 artículos o capítulos relevantes con Consensus o Perplexity (pedagogía crítica, educación intercultural, tu contexto regional).</div>
+            </div>
+            <div class="pipeline-step">
+                <div class="pipeline-connector"><div class="step-circle">2</div><div class="step-line"></div></div>
+                <div class="step-content"><strong>Sube a NotebookLM</strong> Ve a notebook.google.com y carga los documentos en un nuevo notebook.</div>
+            </div>
+            <div class="pipeline-step">
+                <div class="pipeline-connector"><div class="step-circle">3</div><div class="step-line"></div></div>
+                <div class="step-content"><strong>Hazle preguntas al corpus</strong> Por ejemplo: <em>"¿Cómo definen 'aprendizaje significativo' los autores de estos documentos?"</em> o <em>"¿Qué indicadores proponen para medir pensamiento crítico en primaria?"</em> NotebookLM responde citando los documentos fuente.</div>
+            </div>
+            <div class="pipeline-step">
+                <div class="pipeline-connector"><div class="step-circle">4</div><div class="step-line"></div></div>
+                <div class="step-content"><strong>Genera el borrador teórico</strong> Usa las respuestas para construir un primer borrador del marco teórico institucional. El equipo luego verifica las citas, revisa y enriquece colectivamente.</div>
+            </div>
+        </div>
+        <p style="margin-bottom:0; font-size:0.9rem;"><strong>Alternativa:</strong> Si no tienes documentos propios aún, pide a Claude o ChatGPT: <em>"Necesito definir 'interculturalidad' para una ONG educativa indígena en Guatemala. Dame tres definiciones desde perspectivas: constructivista, decolonial y comunitaria, con autores."</em></p>
+    </div>
+
+    <div class="exercise-box">
+        <strong>EJERCICIO 3: Definiendo conceptos clave</strong>
+        <p>Identifiquen 5 conceptos fundamentales para su institución y para cada uno:</p>
+        <ol>
+            <li>Definan el concepto con referencias teóricas (citen autores o corrientes)</li>
+            <li>Establezcan 2-3 indicadores observables en el aula o la comunidad</li>
+            <li>Expliquen cómo este concepto responde a su contexto local específico</li>
+        </ol>
+        <textarea class="input-area no-print" style="min-height:120px;" placeholder="Concepto 1: &#10;  Definición: &#10;  Indicadores: &#10;  Relación con contexto local: &#10;&#10;Concepto 2: &#10;  ..."></textarea>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ MÓDULO 4 -->
+<div id="m4" class="section">
+    <h2 class="section-title"><span class="icon">4</span> Teoría de Cambio y Perfil de Egreso</h2>
+
+    <div class="subsection">
+        <h3 class="subsection-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+            4.1 De la situación actual al futuro deseado
+        </h3>
+        <p>La teoría de cambio articula la lógica que conecta nuestras acciones con los cambios que queremos ver en el mundo. En el contexto pedagógico, se traduce en el <strong>perfil de egreso</strong>: ¿qué tipo de persona queremos que el estudiante sea al terminar su trayectoria con nosotros?</p>
+        <p>El perfil de egreso debe articular:</p>
+        <ul>
+            <li>Competencias académicas contextualizadas (no solo contenidos del currículo nacional)</li>
+            <li>Habilidades socioemocionales (identidad, resiliencia, empatía)</li>
+            <li>Conciencia crítica y ciudadana (capacidad de analizar y transformar su realidad)</li>
+            <li>Identidad cultural fortalecida (lengua, cosmovisión, pertenencia)</li>
+            <li>Capacidad de transformación comunitaria (agencia colectiva)</li>
+        </ul>
+        <div class="highlight-box">
+            <strong>Pregunta clave:</strong> ¿Estamos formando personas para adaptarse al sistema existente, o para transformarlo? ¿Nuestro perfil de egreso reproduce las desigualdades o las cuestiona?
+        </div>
+    </div>
+
+    <div class="subsection">
+        <h3 class="subsection-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            4.2 Construcción participativa del perfil
+        </h3>
+        <p>El perfil de egreso no puede ser impuesto desde arriba. Debe construirse con:</p>
+        <ul>
+            <li><strong>Estudiantes:</strong> ¿Qué aspiran a ser y hacer en su comunidad?</li>
+            <li><strong>Familias:</strong> ¿Qué esperan de la educación que reciben sus hijos?</li>
+            <li><strong>Docentes:</strong> ¿Qué es posible, necesario y deseable?</li>
+            <li><strong>Comunidad:</strong> ¿Qué necesita el territorio?</li>
+        </ul>
+    </div>
+
+    <div class="ai-box">
+        <div class="ai-header">
+            <div class="ai-icon">🤖</div>
+            <strong>Visualizando la Teoría de Cambio con IA</strong>
+        </div>
+        <p><span class="tool-tag">Canva</span><span class="tool-tag">Gemini</span><span class="tool-tag">Claude</span></p>
+        <p>Una teoría de cambio es difícil de comunicar solo con texto. La IA puede ayudarte a crear versiones visuales que faciliten el diálogo comunitario:</p>
+        <ul>
+            <li><strong>Canva con IA:</strong> Describe tu teoría de cambio y pídele que genere una infografía de flujo, o usa las plantillas de "diagrama de causa y efecto". Ideal para presentaciones con donantes.</li>
+            <li><strong>Gemini + Google Slides:</strong> Describe tu teoría de cambio en Gemini y pídele que estructure el texto para llevarlo a Slides con diseño automático.</li>
+            <li><strong>Claude:</strong> Puede generar diagramas interactivos en HTML directamente. Ejemplo: <em>"Crea un diagrama de flujo de mi teoría de cambio con estos elementos: [insumos, actividades, resultados, impacto]."</em></li>
+        </ul>
+        <p style="margin-bottom:0; font-size:0.9rem; background:#ddd5f3; padding:8px 12px; border-radius:6px;"><strong>Sugerencia:</strong> Usa estas herramientas para crear un primer borrador visual que luego se valide y ajuste en un taller participativo con la comunidad. La IA genera el esqueleto; la comunidad le da vida y sentido.</p>
+    </div>
+
+    <div class="exercise-box">
+        <strong>EJERCICIO 4: Construyendo el Perfil de Egreso</strong>
+        <ol>
+            <li>Analicen su perfil de egreso actual (si existe): ¿Quién lo diseñó? ¿Qué visión del mundo refleja?</li>
+            <li>Identifiquen 3 características que reproduce el sistema educativo dominante</li>
+            <li>Propongan 3 características transformadoras basadas en pedagogías críticas y su contexto local</li>
+            <li>Diseñen un proceso participativo para reconstruir el perfil con toda la comunidad educativa</li>
+        </ol>
+        <textarea class="input-area no-print" style="min-height:120px;" placeholder="Características que reproduce el sistema:&#10;1. &#10;2. &#10;3. &#10;&#10;Características transformadoras propuestas:&#10;1. &#10;2. &#10;3. &#10;&#10;Proceso participativo sugerido: "></textarea>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ MÓDULO 5 -->
+<div id="m5" class="section">
+    <h2 class="section-title"><span class="icon">5</span> Niveles de Planificación Estratégica</h2>
+
+    <div class="subsection">
+        <h3 class="subsection-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            5.1 La pirámide de planificación
+        </h3>
+        <p>El MEL está siempre anclado en una arquitectura de planificación que va desde las visiones más amplias hasta las acciones más concretas. Entender estos niveles es clave para asegurar coherencia entre lo que decimos, lo que hacemos y lo que medimos.</p>
+        <div class="pyramid">
+            <div class="pyramid-level nivel-1"><strong>PLAN</strong> — Visión de largo plazo (10-15 años)<br><small>Ejemplo: Plan de Desarrollo Comunitario</small></div>
+            <div class="arrow">↓</div>
+            <div class="pyramid-level nivel-2"><strong>POLÍTICA</strong> — Directrices de mediano plazo (5-10 años)<br><small>Ejemplo: Política Educativa Institucional</small></div>
+            <div class="arrow">↓</div>
+            <div class="pyramid-level nivel-3"><strong>PROGRAMA</strong> — Conjunto de proyectos relacionados (3-5 años)<br><small>Ejemplo: Programa de Educación Intercultural</small></div>
+            <div class="arrow">↓</div>
+            <div class="pyramid-level nivel-4"><strong>PROYECTO</strong> — Intervención específica (1-3 años)<br><small>Ejemplo: Proyecto de Revitalización del Kaqchikel</small></div>
+            <div class="arrow">↓</div>
+            <div class="pyramid-level nivel-5"><strong>PRESUPUESTO</strong> — Recursos asignados (anual)<br><small>Traducción económica de las actividades</small></div>
+        </div>
+        <div class="highlight-box">
+            <strong>Principio clave:</strong> La coherencia vertical es esencial. Cada nivel debe contribuir al logro del nivel superior. Si una actividad no puede conectarse con el impacto de largo plazo, debemos preguntarnos por qué la estamos haciendo.
+        </div>
+    </div>
+
+    <div class="subsection">
+        <h3 class="subsection-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            5.2 El Plan: Visión de largo plazo
+        </h3>
+        <div class="example-box">
+            <strong>Ejemplo — Plan de Desarrollo Comunitario de Santa Cruz La Laguna (2025-2040):</strong><br><br>
+            <em>"Santa Cruz La Laguna es una comunidad Maya Kaqchikel próspera, con identidad cultural fortalecida, donde las familias tienen acceso a educación de calidad, oportunidades económicas sostenibles y participan activamente en la construcción de su desarrollo con equidad de género y respeto al medio ambiente."</em>
+        </div>
+        <div class="reflection-box">
+            <strong>Preguntas:</strong> ¿Esta visión fue construida participativamente? ¿Refleja las aspiraciones de las poblaciones más marginadas? ¿Incluye dimensiones culturales, económicas, ambientales y de género?
+        </div>
+    </div>
+
+    <div class="subsection">
+        <h3 class="subsection-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            5.3 La Política y el Programa
+        </h3>
+        <div class="example-box">
+            <strong>Ejemplo — Política Educativa de ONG en Santa Cruz (2025-2030):</strong><br><br>
+            <strong>Objetivo:</strong> Garantizar educación de calidad con pertinencia cultural, que fortalezca la identidad Maya Kaqchikel, desarrolle competencias para el siglo XXI y promueva la transformación social desde un enfoque de derechos y equidad.<br><br>
+            <strong>Ejes estratégicos:</strong>
+            <ol>
+                <li><strong>Educación Intercultural Crítica:</strong> Valorar y revitalizar la lengua, cultura y cosmovisión Maya Kaqchikel</li>
+                <li><strong>Formación Integral:</strong> Competencias académicas, socioemocionales, artísticas y vocacionales</li>
+                <li><strong>Participación Comunitaria:</strong> Familias y comunidad en la toma de decisiones educativas</li>
+                <li><strong>Sostenibilidad Institucional:</strong> Fortalecer capacidades organizacionales</li>
+            </ol>
+        </div>
+        <div class="example-box">
+            <strong>Ejemplo — Programa de Educación Intercultural (2025-2028):</strong><br><br>
+            <strong>Objetivo:</strong> Fortalecer la educación intercultural crítica en el Colegio Siqajan mediante la revitalización lingüística, el desarrollo curricular pertinente y la formación docente especializada.<br><br>
+            <strong>Proyectos que integra:</strong>
+            <ol>
+                <li>Proyecto de Revitalización del Idioma Kaqchikel</li>
+                <li>Proyecto de Desarrollo Curricular Contextualizado</li>
+                <li>Proyecto de Formación Docente en Pedagogía Intercultural</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="ai-box">
+        <div class="ai-header">
+            <div class="ai-icon">🤖</div>
+            <strong>Claude Projects para mantener coherencia estratégica</strong>
+        </div>
+        <p><span class="tool-tag">Claude Projects</span><span class="tool-tag">ChatGPT Projects</span></p>
+        <p>Si tu organización maneja varios documentos de planificación (plan estratégico, políticas, marcos lógicos), puede ser difícil mantener coherencia entre todos. <strong>Claude Projects</strong> permite crear un espacio de trabajo donde cargas todos esos documentos y el asistente los conoce de forma acumulada.</p>
+        <p>Úsalo para: verificar si un nuevo proyecto es coherente con tu política institucional, generar resúmenes ejecutivos alineados con tu lenguaje, o crear una "guía de estilo" que Claude aplique automáticamente.</p>
+        <p style="margin-bottom:0; font-size:0.9rem; background:#ddd5f3; padding:8px 12px; border-radius:6px;"><strong>Instrucción de ejemplo:</strong> <em>"Eres el asistente de planificación de [nombre de tu organización]. Conoces nuestro plan estratégico, política educativa y principios pedagógicos. Cuando te pida redactar documentos, mantén coherencia con estos marcos."</em></p>
+    </div>
+
+    <div class="exercise-box">
+        <strong>EJERCICIO 5: Construyendo tu arquitectura de planificación</strong>
+        <p><strong>a) Tu Plan de largo plazo (10-15 años):</strong></p>
+        <textarea class="input-area no-print" placeholder="Visión: ¿Qué sueña tu comunidad? ¿Cómo fue construido? ¿Quiénes participaron?"></textarea>
+        <p><strong>b) Tu Política educativa (5-10 años) — objetivo y ejes estratégicos:</strong></p>
+        <textarea class="input-area no-print" placeholder="Objetivo: &#10;Eje 1: &#10;Eje 2: &#10;Eje 3: "></textarea>
+        <p><strong>c) Un Programa (3-5 años) — nombre, objetivo y proyectos que integra:</strong></p>
+        <textarea class="input-area no-print" placeholder="Nombre del programa: &#10;Objetivo: &#10;¿A qué eje(s) contribuye? &#10;Proyectos: "></textarea>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ MÓDULO 6 -->
+<div id="m6" class="section">
+    <h2 class="section-title"><span class="icon">6</span> El Proyecto y el Marco Lógico</h2>
+
+    <div class="subsection">
+        <h3 class="subsection-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="3" y1="9" x2="21" y2="9"/></svg>
+            6.1 El marco lógico como herramienta de coherencia
+        </h3>
+        <p>El marco lógico mantiene dos tipos de coherencia:</p>
+        <ul>
+            <li><strong>Lógica vertical (causa-efecto):</strong> Si hacemos X, entonces Y</li>
+            <li><strong>Lógica horizontal (medición y verificación):</strong> Si planteamos Y, entonces lo medimos con Z</li>
+        </ul>
+        <table class="table">
+            <tr><th>Nivel</th><th>Descripción</th><th>Pregunta clave</th></tr>
+            <tr><td><strong>FIN</strong></td><td>Impacto de largo plazo al que contribuye el proyecto</td><td>¿Por qué es importante para la sociedad?</td></tr>
+            <tr><td><strong>PROPÓSITO</strong></td><td>Cambio directo que el proyecto busca lograr</td><td>¿Qué cambio queremos ver en los beneficiarios?</td></tr>
+            <tr><td><strong>COMPONENTES</strong></td><td>Productos o servicios que el proyecto debe entregar</td><td>¿Qué debemos generar para lograr el propósito?</td></tr>
+            <tr><td><strong>ACTIVIDADES</strong></td><td>Tareas específicas que hay que ejecutar</td><td>¿Qué acciones debemos realizar?</td></tr>
+        </table>
+        <div class="critical-box">
+            <strong>Reflexión crítica:</strong> El marco lógico NO es neutral. Puede usarse para imponer una visión técnica que ignore la complejidad social, o como herramienta de clarificación participativa. La diferencia está en QUIÉN participa en su construcción y CÓMO se integran las voces de la comunidad.
+        </div>
+    </div>
+
+    <div class="subsection">
+        <h3 class="subsection-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            6.2 Ejemplo completo: Proyecto de Revitalización del Idioma Kaqchikel
+        </h3>
+        <div class="example-box">
+            <strong>Contexto:</strong> Amigos de Santa Cruz opera el Colegio Siqajan en una comunidad Maya Kaqchikel (596 beneficiarios directos) en las orillas del Lago de Atitlán. El 93.57% habla Kaqchikel como primera lengua, pero la transmisión intergeneracional está en riesgo.
+        </div>
+        <p><strong>Matriz de Marco Lógico:</strong></p>
+        <table class="table">
+            <tr><th>Nivel</th><th>Descripción</th><th>Indicadores</th><th>Medios de Verificación</th></tr>
+            <tr>
+                <td><strong>FIN</strong></td>
+                <td>Fortalecer la identidad cultural Maya Kaqchikel en las nuevas generaciones de Santa Cruz La Laguna</td>
+                <td>80% de egresados usan Kaqchikel en vida cotidiana; incremento en valoración positiva de la cultura propia</td>
+                <td>Estudios de seguimiento de egresados; encuestas comunitarias</td>
+            </tr>
+            <tr>
+                <td><strong>PROPÓSITO</strong></td>
+                <td>El estudiantado del Colegio Siqajan desarrolla competencias comunicativas en Kaqchikel y valora su uso en diferentes contextos</td>
+                <td>80% alcanza nivel intermedio-avanzado al graduarse; 70% usa Kaqchikel en presentaciones escolares</td>
+                <td>Evaluaciones lingüísticas estandarizadas; registros de actividades</td>
+            </tr>
+            <tr>
+                <td><strong>C1</strong></td>
+                <td>Currículo de Kaqchikel diseñado e implementado</td>
+                <td>Currículo validado en 100% de grados</td>
+                <td>Documento curricular; planificaciones de clase</td>
+            </tr>
+            <tr>
+                <td><strong>C2</strong></td>
+                <td>Materiales didácticos en Kaqchikel producidos</td>
+                <td>10 textos y 50 materiales complementarios producidos</td>
+                <td>Inventario de materiales</td>
+            </tr>
+            <tr>
+                <td><strong>C3</strong></td>
+                <td>Docentes formados en enseñanza del Kaqchikel</td>
+                <td>8 docentes certificados</td>
+                <td>Certificados de formación</td>
+            </tr>
+            <tr>
+                <td><strong>C4</strong></td>
+                <td>Espacios de práctica del idioma establecidos</td>
+                <td>4 espacios permanentes funcionando (rincón, club, eventos, radio)</td>
+                <td>Registros de asistencia y actividades</td>
+            </tr>
+        </table>
+        <div class="reflection-box">
+            <strong>Supuestos críticos:</strong>
+            <ul>
+                <li>Las familias apoyan el aprendizaje del Kaqchikel en casa</li>
+                <li>Hay disponibilidad de hablantes competentes para colaborar</li>
+                <li>El MINEDUC no impone restricciones a la enseñanza del idioma maya</li>
+                <li>Se mantiene el financiamiento durante la duración del proyecto</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="ai-box">
+        <div class="ai-header">
+            <div class="ai-icon">🤖</div>
+            <strong>IA para diseñar y revisar el marco lógico</strong>
+        </div>
+        <p><span class="tool-tag">Claude</span><span class="tool-tag">ChatGPT</span><span class="tool-tag">Gemini</span></p>
+        <ul>
+            <li><strong>Para un primer borrador:</strong> Describe tu proyecto en 2-3 párrafos y pide que estructure los elementos en una matriz de marco lógico. Es un punto de partida para la discusión de equipo, no un documento final.</li>
+            <li><strong>Para revisar coherencia:</strong> Copia tu matriz y pide: <em>"Revisa si las actividades son suficientes para lograr los componentes, si los componentes son suficientes para el propósito, y si hay supuestos críticos no mencionados."</em></li>
+            <li><strong>Para generar indicadores alternativos:</strong> <em>"Sugiere 5 indicadores para medir el propósito de este proyecto, equilibrando enfoques cuantitativos y cualitativos."</em> El equipo selecciona los más pertinentes.</li>
+        </ul>
+    </div>
+
+    <div class="exercise-box">
+        <strong>EJERCICIO 6: Tu Marco Lógico</strong>
+        <p>Desarrolla UNO de los proyectos de tu programa usando la matriz:</p>
+        <table class="table">
+            <tr><th>Nivel</th><th>Descripción</th><th>Indicadores</th><th>Medios de Verificación</th></tr>
+            <tr><td><strong>FIN</strong></td><td><textarea class="input-area input-short no-print"></textarea></td><td><textarea class="input-area input-short no-print"></textarea></td><td><textarea class="input-area input-short no-print"></textarea></td></tr>
+            <tr><td><strong>PROPÓSITO</strong></td><td><textarea class="input-area input-short no-print"></textarea></td><td><textarea class="input-area input-short no-print"></textarea></td><td><textarea class="input-area input-short no-print"></textarea></td></tr>
+            <tr><td><strong>C1</strong></td><td><textarea class="input-area input-short no-print"></textarea></td><td><textarea class="input-area input-short no-print"></textarea></td><td><textarea class="input-area input-short no-print"></textarea></td></tr>
+            <tr><td><strong>C2</strong></td><td><textarea class="input-area input-short no-print"></textarea></td><td><textarea class="input-area input-short no-print"></textarea></td><td><textarea class="input-area input-short no-print"></textarea></td></tr>
+            <tr><td><strong>C3</strong></td><td><textarea class="input-area input-short no-print"></textarea></td><td><textarea class="input-area input-short no-print"></textarea></td><td><textarea class="input-area input-short no-print"></textarea></td></tr>
+        </table>
+        <p><strong>Supuestos críticos de tu proyecto:</strong></p>
+        <textarea class="input-area no-print" placeholder="¿Qué condiciones externas deben darse para que el proyecto funcione?"></textarea>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ MÓDULO 7 -->
+<div id="m7" class="section">
+    <h2 class="section-title"><span class="icon">7</span> Formulación de Indicadores</h2>
+
+    <p>Un indicador es una medida o señal que nos permite saber si estamos avanzando hacia nuestros objetivos. Los indicadores hacen medibles los objetivos que de otra manera serían abstractos.</p>
+    <div class="highlight-box">
+        <strong>Principio clave:</strong> Los indicadores deben definirse participativamente con la comunidad. Los indicadores cualitativos son igualmente válidos que los cuantitativos y a menudo capturan mejor las transformaciones profundas.
+    </div>
+
+    <div class="subsection">
+        <h3 class="subsection-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            7.1 Los cinco elementos de un buen indicador
+        </h3>
+        <table class="table">
+            <tr><th>Elemento</th><th>Pregunta</th><th>Ejemplo</th></tr>
+            <tr><td><strong>QUÉ</strong> se está midiendo</td><td>¿Cuál es el objeto de medición?</td><td>Competencias comunicativas en Kaqchikel</td></tr>
+            <tr><td><strong>CUÁNTO</strong> cambio se busca</td><td>¿Qué magnitud de cambio?</td><td>80% del estudiantado</td></tr>
+            <tr><td><strong>CÓMO</strong> será el cambio</td><td>¿Qué tipo de transformación?</td><td>Alcanza nivel intermedio-avanzado</td></tr>
+            <tr><td><strong>CUÁNDO</strong> se logrará</td><td>¿En qué momento?</td><td>Al graduarse (fin del ciclo)</td></tr>
+            <tr><td><strong>DÓNDE</strong> ocurrirá</td><td>¿En qué población o lugar?</td><td>Estudiantes del Colegio Siqajan</td></tr>
+        </table>
+        <div class="example-box">
+            <strong>Indicador completo bien formulado:</strong><br>
+            <em>"Al finalizar el tercer año del proyecto, el 80% del estudiantado del Colegio Siqajan alcanza nivel intermedio-avanzado en competencias comunicativas del idioma Kaqchikel."</em>
+        </div>
+    </div>
+
+    <div class="subsection">
+        <h3 class="subsection-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="3" y1="9" x2="21" y2="9"/></svg>
+            7.2 Tipos de indicadores y enfoque crítico
+        </h3>
+        <p><strong>Indicadores de Impacto</strong> → asociados al FIN</p>
+        <table class="table">
+            <tr><th>Enfoque convencional</th><th>Enfoque crítico/comunitario</th></tr>
+            <tr><td>"Reducción del 25% en la tasa de desnutrición"</td><td>"Las familias recuperan sistemas alimentarios tradicionales basados en la milpa, fortaleciendo su soberanía alimentaria"</td></tr>
+        </table>
+        <p><strong>Indicadores de Resultado</strong> → asociados al PROPÓSITO</p>
+        <table class="table">
+            <tr><th>Enfoque convencional</th><th>Enfoque crítico/comunitario</th></tr>
+            <tr><td>"80% de docentes aplica metodología activa"</td><td>"80% de docentes integra pedagogía crítica e interculturalidad, promoviendo que estudiantes cuestionen estructuras de poder"</td></tr>
+        </table>
+        <p><strong>Indicadores de Producto</strong> → asociados a COMPONENTES</p>
+        <table class="table">
+            <tr><th>Enfoque convencional</th><th>Enfoque crítico/comunitario</th></tr>
+            <tr><td>"10 textos escolares producidos"</td><td>"10 textos escolares co-creados con ancianos/as y docentes que integran narrativas orales y cosmovisión Kaqchikel"</td></tr>
+        </table>
+        <p><strong>Indicadores de Proceso</strong> → asociados a ACTIVIDADES</p>
+        <table class="table">
+            <tr><th>Enfoque convencional</th><th>Enfoque crítico/comunitario</th></tr>
+            <tr><td>"12 talleres realizados según cronograma"</td><td>"Nivel de participación de mujeres, jóvenes y ancianos/as en la planificación y toma de decisiones sobre las actividades"</td></tr>
+        </table>
+        <div class="critical-box">
+            <strong>Reflexión crítica:</strong> Un sistema de MEL sólido equilibra mediciones cuantitativas con cualitativas. Los indicadores deben capturar dimensiones de poder, participación, cultura e identidad, no solo cantidades fáciles de contar.
+        </div>
+    </div>
+
+    <div class="subsection">
+        <h3 class="subsection-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            7.3 Medios de verificación y línea base
+        </h3>
+        <table class="table">
+            <tr><th>Instrumento</th><th>Para qué sirve</th></tr>
+            <tr><td>Pruebas o tests</td><td>Medir conocimientos técnicos o habilidades específicas</td></tr>
+            <tr><td>Encuestas</td><td>Conocer opiniones, percepciones y juicios de valor</td></tr>
+            <tr><td>Entrevistas</td><td>Profundizar en experiencias y cambios personales</td></tr>
+            <tr><td>Grupos focales</td><td>Analizar consensos y divergencias grupales</td></tr>
+            <tr><td>Observación directa</td><td>Registrar comportamientos y prácticas en contexto</td></tr>
+            <tr><td>Testimonios y relatos</td><td>Capturar experiencias cualitativas y transformaciones</td></tr>
+            <tr><td>Fotografías / videos</td><td>Evidenciar cambios visuales y documentar procesos</td></tr>
+        </table>
+        <div class="highlight-box">
+            <strong>Línea base — el punto de partida:</strong> La línea base es la "fotografía inicial" antes de intervenir. Sin ella, no podemos saber si generamos cambios reales.<br><br>
+            <strong>Ejemplo:</strong> Indicador: 80% alcanza nivel intermedio-avanzado en Kaqchikel. Línea base: Solo el 15% tiene ese nivel al inicio; 50% nivel básico; 35% nivel inicial. <strong>Meta:</strong> pasar de 15% a 80% en 3 años.
+        </div>
+    </div>
+
+    <div class="ai-box">
+        <div class="ai-header">
+            <div class="ai-icon">🤖</div>
+            <strong>IA para formular y validar indicadores</strong>
+        </div>
+        <p><span class="tool-tag">Claude</span><span class="tool-tag">ChatGPT</span><span class="tool-tag">Perplexity</span></p>
+        <ul>
+            <li><strong>Para formular indicadores:</strong> Describe el objetivo a Claude o ChatGPT y pide: <em>"Propón 5 indicadores para este objetivo, incluyendo los 5 elementos (qué, cuánto, cómo, cuándo, dónde), equilibrando cuantitativos y cualitativos."</em></li>
+            <li><strong>Para encontrar referentes:</strong> Usa Perplexity: <em>"Indicadores de evaluación para proyectos de revitalización de lenguas indígenas en América Latina."</em> Aprende de experiencias previas antes de inventar desde cero.</li>
+            <li><strong>Para validar coherencia:</strong> Pega tu tabla en Claude con la pregunta: <em>"¿Cada indicador cumple los 5 elementos? ¿Cuáles son vagos o difíciles de verificar?"</em></li>
+        </ul>
+    </div>
+
+    <div class="exercise-box">
+        <strong>EJERCICIO 7: Formulando indicadores para tu proyecto</strong>
+        <p><strong>a) Para el FIN — Indicador de Impacto:</strong></p>
+        <textarea class="input-area no-print" placeholder="Indicador:&#10;Medio de verificación:"></textarea>
+        <p><strong>b) Para el PROPÓSITO — Indicador de Resultado:</strong></p>
+        <textarea class="input-area no-print" placeholder="Indicador:&#10;Medio de verificación:"></textarea>
+        <p><strong>c) Para los COMPONENTES — Indicadores de Producto (al menos 2):</strong></p>
+        <textarea class="input-area no-print" placeholder="C1:&#10;C2:"></textarea>
+        <p><strong>d) Un Indicador de Proceso:</strong></p>
+        <textarea class="input-area no-print" placeholder="¿Cómo medirán la calidad del proceso, no solo el resultado?"></textarea>
+        <div class="reflection-box">
+            <strong>Auto-evaluación:</strong>
+            <ul>
+                <li>¿Cada indicador tiene los 5 elementos (qué, cuánto, cómo, cuándo, dónde)?</li>
+                <li>¿Incluyes tanto indicadores cuantitativos como cualitativos?</li>
+                <li>¿Los indicadores capturan dimensiones de participación, poder y cultura?</li>
+                <li>¿Es realista recolectar esta información con los recursos disponibles?</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ MÓDULO 8 -->
+<div id="m8" class="section">
+    <h2 class="section-title"><span class="icon">8</span> Verificación de Coherencia</h2>
+
+    <p>Un buen marco de planificación y MEL pasa dos pruebas de coherencia: vertical y horizontal.</p>
+
+    <div class="subsection">
+        <h3 class="subsection-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+            8.1 Lógica vertical: la cadena causal
+        </h3>
+        <p>La lógica vertical se lee de abajo hacia arriba y responde a: <em>"Si hacemos esto, ¿qué pasa?"</em></p>
+        <table class="table">
+            <tr><th>Nivel</th><th>Pregunta de verificación</th><th>Relación lógica</th></tr>
+            <tr><td><strong>ACTIVIDADES</strong></td><td>¿Si realizamos estas actividades, entonces...?</td><td>...lograremos los COMPONENTES</td></tr>
+            <tr><td><strong>COMPONENTES</strong></td><td>¿Si logramos estos componentes, entonces...?</td><td>...alcanzaremos el PROPÓSITO</td></tr>
+            <tr><td><strong>PROPÓSITO</strong></td><td>¿Si alcanzamos el propósito, entonces...?</td><td>...contribuiremos al FIN</td></tr>
+        </table>
+        <div class="example-box">
+            <strong>Verificación:</strong> ¿Si tenemos currículo + materiales + docentes formados + espacios de práctica, es suficiente para que los estudiantes desarrollen competencias en Kaqchikel? ✓ Sí. ¿Podríamos lograrlo sin alguno de estos componentes? ✗ No, todos son necesarios.
+        </div>
+        <p><strong>Lista de verificación de lógica vertical:</strong></p>
+        <table class="table checklist-table">
+            <tr><th>Pregunta</th><th>Sí</th><th>Parcial</th><th>No</th></tr>
+            <tr><td>¿Las actividades son suficientes y necesarias para producir cada componente?</td><td><input type="checkbox" class="no-print"></td><td><input type="checkbox" class="no-print"></td><td><input type="checkbox" class="no-print"></td></tr>
+            <tr><td>¿Si logramos TODOS los componentes, es suficiente para alcanzar el propósito?</td><td><input type="checkbox" class="no-print"></td><td><input type="checkbox" class="no-print"></td><td><input type="checkbox" class="no-print"></td></tr>
+            <tr><td>¿El logro del propósito contribuye significativamente al fin de largo plazo?</td><td><input type="checkbox" class="no-print"></td><td><input type="checkbox" class="no-print"></td><td><input type="checkbox" class="no-print"></td></tr>
+            <tr><td>¿Falta algún componente o actividad crítica?</td><td><input type="checkbox" class="no-print"></td><td><input type="checkbox" class="no-print"></td><td><input type="checkbox" class="no-print"></td></tr>
+            <tr><td>¿Hay elementos que no contribuyen realmente al nivel superior?</td><td><input type="checkbox" class="no-print"></td><td><input type="checkbox" class="no-print"></td><td><input type="checkbox" class="no-print"></td></tr>
+        </table>
+    </div>
+
+    <div class="subsection">
+        <h3 class="subsection-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+            8.2 Lógica horizontal: coherencia entre columnas
+        </h3>
+        <div class="critical-box">
+            <strong>Problema común:</strong><br>
+            Narrativa: "Fortalecer la participación comunitaria en la gestión del proyecto"<br>
+            Indicador inadecuado: "10 reuniones comunitarias realizadas" ← mide cantidad, no calidad<br>
+            <strong>Indicador adecuado:</strong> "Al finalizar el proyecto, 70% de participantes en reuniones (incluyendo mujeres, jóvenes y ancianos/as) reportan participación activa en toma de decisiones"
+        </div>
+        <p><strong>Lista de verificación de lógica horizontal:</strong></p>
+        <table class="table checklist-table">
+            <tr><th>Pregunta</th><th>Sí</th><th>No</th></tr>
+            <tr><td>¿El indicador mide directamente lo que se plantea en el objetivo?</td><td><input type="checkbox" class="no-print"></td><td><input type="checkbox" class="no-print"></td></tr>
+            <tr><td>¿El indicador es específico y tiene los 5 elementos?</td><td><input type="checkbox" class="no-print"></td><td><input type="checkbox" class="no-print"></td></tr>
+            <tr><td>¿El medio de verificación permite recolectar la información del indicador?</td><td><input type="checkbox" class="no-print"></td><td><input type="checkbox" class="no-print"></td></tr>
+            <tr><td>¿El medio de verificación es realista y está al alcance del proyecto?</td><td><input type="checkbox" class="no-print"></td><td><input type="checkbox" class="no-print"></td></tr>
+            <tr><td>¿Los supuestos identifican condiciones externas críticas y fuera del control del proyecto?</td><td><input type="checkbox" class="no-print"></td><td><input type="checkbox" class="no-print"></td></tr>
+        </table>
+    </div>
+
+    <div class="ai-box">
+        <div class="ai-header">
+            <div class="ai-icon">🤖</div>
+            <strong>IA como revisor lógico</strong>
+        </div>
+        <p><span class="tool-tag">Claude</span><span class="tool-tag">ChatGPT</span></p>
+        <p>Una vez que tengas una primera versión de tu marco lógico completo, pégalo en Claude o ChatGPT y pide: <em>"Actúa como revisor de marcos lógicos. Identifica: (1) ¿Hay actividades que no contribuyen a ningún componente? (2) ¿Algún componente no es suficiente para el propósito? (3) ¿Los indicadores son coherentes con los objetivos?"</em></p>
+        <p style="margin-bottom:0;">Es una revisión rápida antes de presentar el documento al equipo o a donantes. No reemplaza la revisión humana, pero detecta inconsistencias evidentes.</p>
+    </div>
+
+    <div class="exercise-box">
+        <strong>EJERCICIO 8: Verificando tu lógica</strong>
+        <p><strong>Lógica vertical — completa la cadena causal:</strong></p>
+        <textarea class="input-area no-print" placeholder="Mis ACTIVIDADES principales son:&#10;&#10;↓ Si realizo estas actividades, ENTONCES genero estos COMPONENTES:&#10;&#10;↓ Si logro estos componentes, ENTONCES alcanzo este PROPÓSITO:&#10;&#10;↓ Si alcanzo el propósito, ENTONCES contribuyo a este FIN:"></textarea>
+        <p><strong>Lógica horizontal — toma el nivel de PROPÓSITO y verifica:</strong></p>
+        <table class="table">
+            <tr><th>Columna</th><th>Tu contenido</th><th>Verificación</th></tr>
+            <tr><td><strong>1. Narrativa</strong></td><td><textarea class="input-area input-short no-print"></textarea></td><td>¿Es claro y específico?</td></tr>
+            <tr><td><strong>2. Indicador</strong></td><td><textarea class="input-area input-short no-print"></textarea></td><td>¿Mide realmente lo que dice la narrativa?</td></tr>
+            <tr><td><strong>3. Medio de Verificación</strong></td><td><textarea class="input-area input-short no-print"></textarea></td><td>¿Puede recolectar info sobre el indicador?</td></tr>
+            <tr><td><strong>4. Supuestos</strong></td><td><textarea class="input-area input-short no-print"></textarea></td><td>¿Son condiciones externas y realistas?</td></tr>
+        </table>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ MÓDULO 9 -->
+<div id="m9" class="section">
+    <h2 class="section-title"><span class="icon">9</span> Herramientas e Instrumentos de Monitoreo</h2>
+
+    <div class="subsection">
+        <h3 class="subsection-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            9.1 Observación sistemática del aula
+        </h3>
+        <p><strong>Adaptación crítica del Teach Primary:</strong> Al instrumento original, agregar dimensiones como:</p>
+        <ul>
+            <li><strong>Pertinencia cultural:</strong> ¿Se usan lenguas maternas? ¿Se incorporan saberes locales?</li>
+            <li><strong>Pedagogía crítica:</strong> ¿Se promueve el cuestionamiento? ¿Se analiza el poder?</li>
+            <li><strong>Participación democrática:</strong> ¿Los estudiantes tienen voz en decisiones del aula?</li>
+            <li><strong>Conexión comunitaria:</strong> ¿Los contenidos vinculan con problemáticas locales?</li>
+        </ul>
+        <p><strong>Adaptación del Sistema Stallings:</strong> Incluir tiempo dedicado a diálogo y reflexión crítica, trabajo colaborativo, y conexión entre teoría, práctica y contexto local.</p>
+    </div>
+
+    <div class="subsection">
+        <h3 class="subsection-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            9.2 Evaluación alternativa del aprendizaje
+        </h3>
+        <ul>
+            <li><strong>Portafolios reflexivos:</strong> Documentan procesos, no solo productos finales</li>
+            <li><strong>Proyectos comunitarios:</strong> Evalúan aplicación en contexto real</li>
+            <li><strong>Autoevaluación y coevaluación:</strong> Desarrollan metacognición y responsabilidad</li>
+            <li><strong>Círculos de diálogo:</strong> Evalúan comprensión profunda y capacidad crítica</li>
+            <li><strong>Demostraciones prácticas:</strong> Valoran saberes que no se expresan por escrito</li>
+        </ul>
+    </div>
+
+    <div class="ai-box">
+        <div class="ai-header">
+            <div class="ai-icon">🤖</div>
+            <strong>Ecosistema Fireflies + Claude para análisis de información cualitativa</strong>
+        </div>
+        <p><span class="tool-tag">Fireflies.ai</span><span class="tool-tag">Claude</span><span class="tool-tag">NotebookLM</span></p>
+        <p>Este flujo de trabajo transforma semanas de transcripción y análisis manual en 1-2 días de trabajo enfocado:</p>
+        <div class="pipeline">
+            <div class="pipeline-step">
+                <div class="pipeline-connector"><div class="step-circle">1</div><div class="step-line"></div></div>
+                <div class="step-content">
+                    <strong>Transcripción con Fireflies.ai</strong>
+                    Fireflies se conecta a Zoom, Meet o Teams y genera transcripciones automáticas con hablantes identificados. También puedes subir audios grabados. Plan gratuito disponible con límites.
+                    <br><em>Recuerda: informa a los participantes y solicita autorización explícita antes de grabar.</em>
+                </div>
+            </div>
+            <div class="pipeline-step">
+                <div class="pipeline-connector"><div class="step-circle">2</div><div class="step-line"></div></div>
+                <div class="step-content">
+                    <strong>Análisis temático con Claude</strong>
+                    Sube la transcripción y usa prompts como:
+                    <ul>
+                        <li><em>"Identifica los 5 temas principales que emergieron en esta conversación."</em></li>
+                        <li><em>"¿Qué tensiones o contradicciones aparecen entre los participantes?"</em></li>
+                        <li><em>"¿Hay diferencias entre lo que dicen los hombres y las mujeres?"</em></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pipeline-step">
+                <div class="pipeline-connector"><div class="step-circle">3</div><div class="step-line"></div></div>
+                <div class="step-content">
+                    <strong>Triangulación con NotebookLM</strong>
+                    Si tienes múltiples grupos focales (estudiantes, familias, docentes), carga todas las transcripciones en NotebookLM y pregunta: <em>"¿En qué coinciden y en qué difieren las percepciones de los tres grupos sobre [tema]?"</em>
+                </div>
+            </div>
+        </div>
+        <p style="margin-bottom:0; font-size:0.9rem; background:#ddd5f3; padding:8px 12px; border-radius:6px;"><strong>Consideración ética:</strong> No incluyas nombres reales en los documentos que subes a plataformas externas. Usa pseudónimos o roles ("Docente 1", "Familiar 3") desde el inicio.</p>
+    </div>
+
+    <div class="exercise-box">
+        <strong>EJERCICIO 9: Diseño de herramientas de monitoreo</strong>
+        <ol>
+            <li>Adapten una sección del Teach Primary incluyendo al menos 3 indicadores de pedagogía crítica e interculturalidad</li>
+            <li>Diseñen una rúbrica para evaluar proyectos comunitarios estudiantiles (4-5 criterios, 3 niveles de desempeño)</li>
+            <li>Elaboren una guía de grupo focal (5-7 preguntas) para explorar cambios en la identidad cultural de estudiantes</li>
+        </ol>
+        <textarea class="input-area no-print" style="min-height:120px;" placeholder="Indicadores de pedagogía crítica para Teach Primary:&#10;1.&#10;2.&#10;3.&#10;&#10;Preguntas guía para grupo focal:&#10;1.&#10;2.&#10;3."></textarea>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ MÓDULO 10 -->
+<div id="m10" class="section">
+    <h2 class="section-title"><span class="icon">10</span> Visualización de Datos y Dashboards</h2>
+
+    <p>Un sistema de MEL produce datos. El reto es convertir esos datos en información útil para la toma de decisiones, la rendición de cuentas y el aprendizaje organizacional. Los dashboards permiten visualizar el avance de indicadores de forma dinámica y accesible.</p>
+
+    <div class="ai-box">
+        <div class="ai-header">
+            <div class="ai-icon">🤖</div>
+            <strong>Creando dashboards de indicadores con IA</strong>
+        </div>
+        <p><span class="tool-tag">Claude</span><span class="tool-tag">Looker Studio</span><span class="tool-tag">Canva</span><span class="tool-tag">ChatGPT</span></p>
+        <p><strong>Opción 1 — Claude con Artifacts (sin conocimientos técnicos):</strong><br>
+        Claude puede generar dashboards interactivos en HTML directamente. Pide: <em>"Crea un dashboard visual en HTML que muestre el avance de estos indicadores: [lista indicadores con metas y valores actuales]. Incluye barras de progreso y colores de semáforo (verde/amarillo/rojo)."</em> El resultado es un archivo que puedes abrir en cualquier navegador.</p>
+        <p><strong>Opción 2 — Google Looker Studio (gratuito):</strong><br>
+        Conecta tus hojas de Google Sheets con los datos de monitoreo a Looker Studio para crear reportes visuales que se actualizan automáticamente. Puedes pedirle a ChatGPT o Claude que te explique cómo configurarlo paso a paso.</p>
+        <p style="margin-bottom:0;"><strong>Opción 3 — Canva (para reportes estáticos):</strong><br>
+        Ideal para informes de comunicación externa con donantes o comunidad, cuando los datos son finales y el diseño importa más que la interactividad.</p>
+        <br>
+        <table class="table">
+            <tr><th>Herramienta</th><th>Cuándo usarla</th></tr>
+            <tr><td>Claude Artifacts</td><td>Dashboards internos rápidos y personalizados</td></tr>
+            <tr><td>Looker Studio</td><td>Monitoreo continuo con datos que se actualizan regularmente</td></tr>
+            <tr><td>Canva</td><td>Comunicación externa y rendición de cuentas</td></tr>
+        </table>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ MÓDULO 11 -->
+<div id="m11" class="section">
+    <h2 class="section-title"><span class="icon">11</span> Marco Legal y el PEI como Herramienta de Autonomía</h2>
+
+    <div class="subsection">
+        <h3 class="subsection-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            11.1 El PEI como espacio de autonomía relativa
+        </h3>
+        <p>El Proyecto Educativo Institucional (PEI) tiene doble función: cumplir los mínimos legales exigidos por el Estado y, al mismo tiempo, plasmar la visión pedagógica propia de la institución.</p>
+        <p>Los mínimos que generalmente deben cumplirse:</p>
+        <ul>
+            <li>Alineación con competencias del Currículo Nacional Base (CNB)</li>
+            <li>Cumplimiento de días y horas lectivas</li>
+            <li>Respeto a derechos humanos y constitucionales</li>
+            <li>Principios de inclusión y no discriminación</li>
+        </ul>
+        <div class="highlight-box">
+            <strong>Estrategia:</strong> Usar el lenguaje oficial estratégicamente. La "formación ciudadana" del CNB puede interpretarse como formación de ciudadanos críticos y transformadores, no solo obedientes y adaptados al sistema.
+        </div>
+    </div>
+
+    <div class="subsection">
+        <h3 class="subsection-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            11.2 Navegando las contradicciones
+        </h3>
+        <table class="table">
+            <tr><th>Estrategia</th><th>Descripción</th></tr>
+            <tr><td><strong>Reinterpretación creativa</strong></td><td>Dar nuevo significado a conceptos oficiales desde una perspectiva crítica</td></tr>
+            <tr><td><strong>Documentación estratégica</strong></td><td>Documentar las mejoras reales del modelo para defender su valor ante autoridades</td></tr>
+            <tr><td><strong>Alianzas institucionales</strong></td><td>Identificar supervisores y autoridades que sean aliados del cambio</td></tr>
+            <tr><td><strong>Evidencia de resultados</strong></td><td>El MEL robusto es el mejor argumento para sostener modelos alternativos</td></tr>
+        </table>
+    </div>
+
+    <div class="ai-box">
+        <div class="ai-header">
+            <div class="ai-icon">🤖</div>
+            <strong>IA para reinterpretación estratégica del lenguaje oficial</strong>
+        </div>
+        <p><span class="tool-tag">Claude</span><span class="tool-tag">ChatGPT</span></p>
+        <p>Necesitas redactar tu PEI o un informe para el MINEDUC usando lenguaje oficial, pero sin traicionar tu visión pedagógica. Pide a Claude o ChatGPT:</p>
+        <p style="font-style:italic; color:#4527a0; background:#ddd5f3; padding:10px 14px; border-radius:6px; margin-bottom:0;">"Tengo este objetivo pedagógico [escribe tu objetivo en tu propio lenguaje]. Ayúdame a redactarlo usando los términos del CNB guatemalteco, manteniendo la esencia transformadora pero con la terminología oficial que los supervisores reconocen."</p>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ MÓDULO 12 -->
+<div id="m12" class="section">
+    <h2 class="section-title"><span class="icon">12</span> Plan de Implementación del Sistema MEL</h2>
+
+    <div class="subsection">
+        <h3 class="subsection-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            12.1 Fases y cronograma
+        </h3>
+        <table class="table">
+            <tr><th>Fase</th><th>Acciones principales</th><th>Tiempo estimado</th></tr>
+            <tr><td><strong>1. Diagnóstico participativo</strong></td><td>Análisis contextual; diagnóstico de perfiles de estudiantes y docentes; identificación de fortalezas y necesidades</td><td>2 meses</td></tr>
+            <tr><td><strong>2. Definición conceptual</strong></td><td>Construcción colectiva del modelo pedagógico; definición de conceptos clave; diseño participativo del perfil de egreso</td><td>2 meses</td></tr>
+            <tr><td><strong>3. Diseño de instrumentos</strong></td><td>Adaptación de herramientas existentes; creación de instrumentos propios; validación comunitaria</td><td>1 mes</td></tr>
+            <tr><td><strong>4. Pilotaje</strong></td><td>Implementación piloto; ajustes basados en experiencia; documentación de aprendizajes</td><td>3 meses</td></tr>
+            <tr><td><strong>5. Institucionalización</strong></td><td>Integración al PEI; formación docente continua; sistema de mejora continua</td><td>Permanente</td></tr>
+        </table>
+    </div>
+
+    <div class="subsection">
+        <h3 class="subsection-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            12.2 Siguientes pasos concretos
+        </h3>
+        <table class="table">
+            <tr><th>Plazo</th><th>Acción</th><th>Responsable</th></tr>
+            <tr><td>Esta semana</td><td>Compartir esta guía con el equipo directivo; identificar brechas en la planificación actual; programar sesión de revisión colectiva</td><td><input type="text" class="no-print" style="width:95%; border:1px solid #ccc; padding:4px; border-radius:4px;"></td></tr>
+            <tr><td>Próximas 2 semanas</td><td>Facilitar taller participativo con comunidad educativa; validar o ajustar plan/política existentes</td><td><input type="text" class="no-print" style="width:95%; border:1px solid #ccc; padding:4px; border-radius:4px;"></td></tr>
+            <tr><td>Próximo mes</td><td>Desarrollar marco lógico completo del proyecto piloto; elaborar presupuesto detallado</td><td><input type="text" class="no-print" style="width:95%; border:1px solid #ccc; padding:4px; border-radius:4px;"></td></tr>
+            <tr><td>Próximos 3 meses</td><td>Iniciar implementación; establecer sistema de monitoreo; realizar primera evaluación participativa</td><td><input type="text" class="no-print" style="width:95%; border:1px solid #ccc; padding:4px; border-radius:4px;"></td></tr>
+        </table>
+    </div>
+
+    <div class="ai-box">
+        <div class="ai-header">
+            <div class="ai-icon">🤖</div>
+            <strong>Ecosistema de IA para MEL continuo</strong>
+        </div>
+        <p><span class="tool-tag">Fireflies</span><span class="tool-tag">NotebookLM</span><span class="tool-tag">Claude</span><span class="tool-tag">ChatGPT</span><span class="tool-tag">Canva</span><span class="tool-tag">Looker Studio</span></p>
+        <ul>
+            <li><strong>Fireflies:</strong> Transcribe reuniones de equipo, sesiones de retroalimentación y grupos focales</li>
+            <li><strong>NotebookLM:</strong> Acumula informes, transcripciones y evaluaciones para consultarlos de forma integrada</li>
+            <li><strong>Claude / ChatGPT:</strong> Redacta informes de avance, genera análisis comparativos entre períodos, sugiere ajustes al plan</li>
+            <li><strong>Canva / Gemini:</strong> Genera visualizaciones para comunicar resultados a la comunidad de forma accesible</li>
+            <li><strong>Claude / Looker Studio:</strong> Dashboards de seguimiento de indicadores</li>
+        </ul>
+        <p style="margin-bottom:0; font-size:0.9rem; background:#ddd5f3; padding:8px 12px; border-radius:6px;"><strong>Clave:</strong> No es necesario usar todas estas herramientas a la vez. Empieza por las que resuelven los cuellos de botella más concretos de tu equipo y ve construyendo el ecosistema gradualmente.</p>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ MÓDULO 13 -->
+<div id="m13" class="section">
+    <h2 class="section-title"><span class="icon">13</span> Reflexión Crítica Final</h2>
+
+    <p>El monitoreo y la evaluación no son herramientas neutrales. Pueden servir para controlar y homogenizar, o para liberar y transformar. La diferencia está en quién define qué se mide, cómo se mide, y para qué se usa esa información.</p>
+
+    <div class="critical-box">
+        <strong>Preguntas incómodas para cerrar — reflexionen en equipo:</strong>
+    </div>
+
+    <div class="exercise-box">
+        <p><strong>1. ¿Quién participó en la definición de cada nivel de nuestra planificación? ¿Qué voces o saberes quedaron excluidos del proceso?</strong></p>
+        <textarea class="input-area no-print" placeholder="Reflexionen sobre quiénes estuvieron presentes y quiénes no..."></textarea>
+
+        <p><strong>2. ¿Qué relaciones de poder se reflejan o se cuestionan en nuestros indicadores? ¿Estamos midiendo lo que realmente importa para la comunidad?</strong></p>
+        <textarea class="input-area no-print" placeholder="¿Nuestros indicadores mantienen el status quo o buscan transformar?"></textarea>
+
+        <p><strong>3. ¿Nuestro sistema de MEL puede sostenerse sin dependencia de consultores externos o financiadores? ¿Hemos construido capacidades internas reales?</strong></p>
+        <textarea class="input-area no-print" placeholder="¿Quién en el equipo puede liderar el MEL sin apoyo externo?"></textarea>
+
+        <p><strong>4. ¿Las herramientas de IA que integramos amplifican la participación comunitaria o la reemplazan? ¿Seguimos priorizando el diálogo humano sobre la eficiencia técnica?</strong></p>
+        <textarea class="input-area no-print" placeholder="¿En qué momentos la IA nos ha ahorrado tiempo para dedicar más al diálogo? ¿En qué momentos la ha reemplazado?"></textarea>
+
+        <p><strong>5. ¿Estamos formando personas para adaptarse al sistema o para transformarlo? ¿Nuestros indicadores capturan esa diferencia?</strong></p>
+        <textarea class="input-area no-print" placeholder="Revisen su perfil de egreso y sus indicadores a la luz de esta pregunta..."></textarea>
+    </div>
+
+    <div class="reflection-box">
+        <strong>Para recordar:</strong> La planificación estratégica, el marco lógico y el MEL son herramientas, no fines en sí mismos. Deben servir para clarificar, comunicar y organizar nuestro trabajo transformador; nunca para sustituir el diálogo, la reflexión crítica y la participación democrática de las comunidades con las que trabajamos. Y las herramientas de inteligencia artificial son exactamente eso: herramientas. Su valor está en lo que hacemos con el tiempo y la claridad que nos generan.
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ RECURSOS -->
+<div id="recursos" class="section">
+    <h2 class="section-title"><span class="icon">📚</span> Recursos para Profundizar</h2>
+    <div class="resources-grid">
+        <div class="resource-card">
+            <h4>Marco teórico y pedagogía crítica</h4>
+            <ul>
+                <li>Freire, Paulo — <em>Pedagogía del Oprimido</em></li>
+                <li>Walsh, Catherine — <em>Interculturalidad, Estado, Sociedad</em></li>
+                <li>Santos, Boaventura de Sousa — <em>Epistemologías del Sur</em></li>
+            </ul>
+        </div>
+        <div class="resource-card">
+            <h4>Planificación y Marco Lógico</h4>
+            <ul>
+                <li>BID — <em>La Matriz de Marco Lógico</em></li>
+                <li>Matus, Carlos — <em>Planificación Estratégica Situacional</em></li>
+                <li>CEPAL — <em>Manual de formulación, evaluación y monitoreo de proyectos sociales</em></li>
+            </ul>
+        </div>
+        <div class="resource-card">
+            <h4>Indicadores y evaluación alternativa</h4>
+            <ul>
+                <li>Metodología <em>Most Significant Change</em> (MSC)</li>
+                <li>Teach Primary — Banco Mundial</li>
+                <li>ODS 4 — Marco de indicadores UNESCO</li>
+            </ul>
+        </div>
+        <div class="resource-card">
+            <h4>Herramientas de IA recomendadas</h4>
+            <ul>
+                <li><strong>Investigación:</strong> Consensus, Perplexity</li>
+                <li><strong>Síntesis:</strong> NotebookLM</li>
+                <li><strong>Análisis y redacción:</strong> Claude, ChatGPT, Gemini</li>
+                <li><strong>Transcripción:</strong> Fireflies.ai</li>
+                <li><strong>Diseño:</strong> Canva, Looker Studio</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<p class="footer-note">Esta guía fue diseñada como material de trabajo en proceso. Se espera que sea adaptada, cuestionada y enriquecida por cada organización desde su propio contexto, sus propias voces y su propia visión de la educación que sueña.</p>
+
+</div><!-- /.container -->
+</body>
+</html>
